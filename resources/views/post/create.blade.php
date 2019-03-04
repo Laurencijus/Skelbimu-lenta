@@ -12,7 +12,7 @@
 
   <hr />
 
-  <form class="form-horizontal" action="{{route('admin.category.store')}}" method="post">
+  <form class="form-horizontal" enctype="multipart/form-data" action="{{route('admin.category.store')}}" method="post">
     {{ csrf_field() }}
 
     {{-- Form include --}}

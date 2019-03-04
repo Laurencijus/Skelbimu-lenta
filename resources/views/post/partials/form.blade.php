@@ -19,13 +19,14 @@
 <input type="text" class="form-control" name="title" placeholder="Skelbimo kategorijos pavadinimas" value="{{empty($category->title) ? '' : $category->title}}" required>
 <div class="form-group">
     <label for="exampleFormControlTextarea1">Skelbimo aprašas</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="3">
+    {{empty($category->title) ? '' : $category->title}}
+    </textarea>
   </div>
     <div class="invalid-feedback">Neteisingai įvestas tekstas</div>
 
-  <form class="was-validated">
   <div class="custom-file">
-    <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+    <input type="file" class="custom-file-input" id="validatedCustomFile" name="image">
     <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
     <div class="invalid-feedback">Neteisingai pasirinktas failas</div>
   </div>
@@ -42,5 +43,4 @@
 <hr />
 
 <input class="btn btn-primary" type="submit" value="Išsaugoti">
-</form>
 </div>

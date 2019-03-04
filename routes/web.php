@@ -25,5 +25,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 
 });
 
-Route::get('/uploadfile','UploadFileController@index');
-Route::post('/uploadfile','UploadFileController@showUploadFile');
+Route::get('/uploadfile', 'UploadFileController@index');
+Route::post('/uploadfile', 'UploadFileController@showUploadFile');
+
+Route::resource('/post', 'PostController');

@@ -12,24 +12,25 @@
 
   <hr>
 
-  <a href="{{route('admin.category.create')}}" class="btn btn-primary pull-right"><i class="fa fa-plus-square-o"></i>  Sukurti skelbimo kategoriją</a>
+  <a href="{{route('post.create')}}" class="btn btn-primary pull-right"><i class="fa fa-plus-square-o"></i>  Sukurti skelbima1</a>
   <table class="table table-striped">
     <thead>
-      <th>Skelbimų kategorijų pavadinimai</th>
+      <th>pavadimas</th>
       <th>Publikuoti</th>
       <th class="text-right">Veiksmas</th>
     </thead>
     <tbody>
-      @forelse ($categories as $category)
+      @forelse ($posts as $post)
         <tr>
-          <td>{{$category->title}}</td>
-          <td>{{$category->published}}</td>
+          <td>{{$post->name}}</td>
+          <td>{{$post->text}}</td>
+          <td>{{$post->published}}</td>
           <td class=" ">
-          <form onsubmit="if (confirm('Trinti?')){return true}else{return false}" action="{{route('admin.category.destroy',
-          $category)}} " method="post">
+          <form onsubmit="if (confirm('Trinti?')){return true}else{return false}" action="{{route('admin.post.destroy',
+          $post)}} " method="post">
           <input type="hidden" name="_method" value="DELETE">
           {{csrf_field()}}
-            <a class="btn btn-default" href="{{route('admin.category.edit', $category)}}"><i class="fa fa-edit"></i></a>
+            <a class="btn btn-default" href="{{route('post.edit', $post)}}"><i class="fa fa-edit"></i></a>
             <button type="submit" class="btn"><i class="fa fa-trash-o"></i></a>
           </td>
         </tr>
@@ -43,7 +44,7 @@
     <tr>
     <td colspan="3">
     <ul class="pagination pull-right">
-    {{$categories->links()}}
+    {{$posts->links()}}
     </ul>
     </td>
     </tr>
