@@ -5,7 +5,13 @@
     <div class="row">
       <div class="col-sm-3">
         <div class="jumbotron">
-            <p><span class="label label-primary">Skelbimu Kategorijos </span></p>
+            <p>
+            <h3>Skelbimu Kategorijos</h3>
+            @foreach ($categories as $category)
+            {{$category->title}}: {{$category->posts->count()}}
+            <br>
+            @endforeach
+            </p>
         </div>
       </div>
       <div class="col-sm-3">
@@ -27,7 +33,7 @@
 
     <div class="row">
       <div class="col-sm-6">
-        <a class="btn btn-block btn-default" href="{{route('admin.category.create')}}" >Skelbimo statusas</a>
+        <a class="btn btn-block btn-default" href="{{route('post.create')}}" >Skelbimo statusas</a>
         <a class="list-group-item" href="#">
           <h4 class="list-group-item-heading">Kategorija pirma</h4>
           <p class="list-group-item-text">

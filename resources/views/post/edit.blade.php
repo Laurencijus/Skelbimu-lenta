@@ -4,20 +4,16 @@
 
 <div class="container">
 
-   @component('admin.components.breadcrumb')
-    @slot('title') Redaguoti kategorija @endslot
-    @slot('parent') Главная @endslot
-    @slot('active') Категории @endslot
-  @endcomponent
+
 
   <hr />
 
-  <form class="form-horizontal" action="{{route('admin.category.update', $category)}}" method="post">
+  <form class="form-horizontal" action="{{route('post.update', $post)}}" method="post">
    <input type="hidden" name="_method" value="put">
     {{ csrf_field() }}
 
     <!-- {{-- Form include --}} -->
-    @include('admin.categories.partials.form')
+    @include('post.partials.form')
 
   </form>
 </div>

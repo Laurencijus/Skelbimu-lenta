@@ -4,19 +4,15 @@
 
 <div class="container">
 
-  @component('admin.components.breadcrumb')
-    @slot('title') Создание категории @endslot
-    @slot('parent') Главная @endslot
-    @slot('active') Категории @endslot
-  @endcomponent
+
 
   <hr />
 
-  <form class="form-horizontal" enctype="multipart/form-data" action="{{route('admin.category.store')}}" method="post">
+  <form class="form-horizontal" enctype="multipart/form-data" action="{{route('post.store')}}" method="post">
     {{ csrf_field() }}
 
     {{-- Form include --}}
-    @include('admin.categories.partials.form')
+    @include('post.partials.form')
 
   </form>
 </div>

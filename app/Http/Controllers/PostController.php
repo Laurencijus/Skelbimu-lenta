@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
@@ -32,7 +33,10 @@ class PostController extends Controller
             'post' => new Post(),
             'posts' => Post::all(),
             'delimiter' => '',
+            'categories' => Category::all(),
+
         ]);
+        $post->save();
     }
 
     /**
@@ -43,9 +47,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
+        // var_dump($request->input('text'));
+        // die;
+
         $post = new Post();
         $post->title = $request->input('title');
         $post->text = $request->input('text');
+        $post->category_id = $request->input('category_id ');
         $file = $request->file('image');
         if ($file) {
             // $destinationPath = 'uploads';
@@ -53,6 +62,7 @@ class PostController extends Controller
             Storage::put('', $file);
 
         }
+        $post->timestamps = $request->input('timestamps');
 
         $post->save();
         return redirect()->route('post.index');
@@ -77,18 +87,12 @@ class PostController extends Controller
      */
     public function edit(Post $post, Request $request)
     {
-        if ($request->isMethod('post')) {
-
-            $post->title = $request->input('title');
-            $post->text = $request->input('text');
-
-            $post->save();
-        }
 
         return view('post.edit', [
             'post' => $post,
-            'post' => Post::with('children')->where('parent_id', '0')->get(),
             'delimiter' => '',
+            'categories' => Category::all(),
+
         ]);
     }
 
@@ -101,8 +105,14 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $post->update($request->except('slug'));
+        $post->title = $request->input('title');
+        $post->text = $request->input('text');
+        $post->category_id = $request->input('category_id');
+        $post->save();
         return redirect()->route('post.index');
+        // $post->title = $request->input('title');
+        // $post->text = $request->input('text');
+        // $post->name = $request->input('name');
     }
 
     /**

@@ -19,6 +19,7 @@ class CreateDocumentsTable extends Migration
             $table->string('original_name');
             $table->string('path');
             $table->integer('post_id')->nullable();
+            $table->string('parent_id')->nullable();
         });
     }
 
