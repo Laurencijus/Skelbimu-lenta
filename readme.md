@@ -579,6 +579,7 @@ php artisan migrate:fresh --seed
 
 
 Sukuriam failą form.blade, čia atsispindi skelbimo įkelimo forma su failo uploadu.
+
 <label for="">Skelbimų statusas</label>
  <select class="form-control" name="published">
   @if (isset($post->id))
@@ -593,19 +594,18 @@ Sukuriam failą form.blade, čia atsispindi skelbimo įkelimo forma su failo upl
    .was-validated{
      margin: 40px;}
  </style>
-
-
-
 <label for="">Skelbimo kategorijos pavadinimas</label>
-<input type="text" class="form-control" name="name" placeholder="Skelbimo kategorijos pavadinimas" value="{{empty($post->name) ? '' : $post->name}}" required>
-<label for="">Skelbimo pavadinimas</label>
+<select name="category_id" class="form-control">
+    @foreach ($categories as $category)
+    <option value="{{$category->id}}">{{$category->title}}</option>
+    @endforeach
+     </select>
+     <label for="">Skelbimo pavadinimas</label>
 <input type="text" class="form-control" name="title" placeholder="Skelbimo pavadinimas" value="{{empty($post->title) ? '' : $post->title}}" required>
 <div class="form-group">
     <label for="exampleFormControlTextarea1">Skelbimo aprašas</label>
-    <textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="3" required>
-    {{empty($post->name) ? '' : $post->text}}
 
-    </textarea>
+    <textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="3" required>{{empty($post->text) ? '' : $post->text}}</textarea>
   </div>
     <div class="invalid-feedback">Neteisingai įvestas tekstas</div>
 
@@ -614,15 +614,17 @@ Sukuriam failą form.blade, čia atsispindi skelbimo įkelimo forma su failo upl
     <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
     <div class="invalid-feedback">Neteisingai pasirinktas failas</div>
   </div>
-
 <label for="">Slug</label>
-<input class="form-control" type="text" name="slug" placeholder="Аutomatine generacija" value="{{empty($post->slug) ? '' : $post->slug}}" readonly="">
-
-
 <hr />
-
 <input class="btn btn-primary" type="submit" value="Išsaugoti">
-</div>
+</div
 
 
-
+        įkelema skelbimų statistika nustacius category modelyle id sąrisiui sutvirtinti ir atvaizdavimui dashborde;
+        <p>
+            <h3>Skelbimu Kategorijos</h3>
+            @foreach ($categories as $category)
+            {{$category->title}}: {{$category->posts->count()}}
+            <br>
+            @endforeach
+            </p>
